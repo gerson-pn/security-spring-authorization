@@ -45,7 +45,7 @@ public class JwtFiltroAutorizador extends BasicAuthenticationFilter {
 
 	private UsernamePasswordAuthenticationToken obterAutenticacao(String jwtToken) {
 		if (jwtTokenGerador.validarToken(jwtToken)) {
-			String nomeUsuario = jwtTokenGerador.obterNomeUsuairo(jwtToken);
+			String nomeUsuario = jwtTokenGerador.obterNomeUsuario(jwtToken);
 			UserDetails usuarioSpring = servico.loadUserByUsername(nomeUsuario);
 			return new UsernamePasswordAuthenticationToken(usuarioSpring, usuarioSpring.getPassword(), usuarioSpring.getAuthorities());
 		}

@@ -18,10 +18,10 @@ public class JsonWebTotenGerador {
 	@Value("${jwt.expiration}")
 	private Long expiracao;
 
-	public String gerarToken(String nomeUsuairo) {
+	public String gerarToken(String nomeUsuario) {
 		Date tempoExpiracao = new Date(System.currentTimeMillis() + expiracao);
 
-		return Jwts.builder().setSubject(nomeUsuairo).setExpiration(tempoExpiracao)
+		return Jwts.builder().setSubject(nomeUsuario).setExpiration(tempoExpiracao)
 				.signWith(SignatureAlgorithm.HS512, segredo.getBytes()).compact();
 	}
 
@@ -46,7 +46,7 @@ public class JsonWebTotenGerador {
 		}
 	}
 
-	public String obterNomeUsuairo(String jwtToken) {
+	public String obterNomeUsuario(String jwtToken) {
 		Claims reivindicacoes = obterReivindicacoes(jwtToken);
 		if (reivindicacoes != null) {
 			String nomeUsuario = reivindicacoes.getSubject();
